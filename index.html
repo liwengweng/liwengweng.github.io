@@ -160,6 +160,156 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/01/%E6%9C%AC%E5%9C%B0%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E7%A0%94%E7%A9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Lijia'anyi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lijiaanyi'Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/01/%E6%9C%AC%E5%9C%B0%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E7%A0%94%E7%A9%B6/" class="post-title-link" itemprop="url">本地差分隐私研究</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-01 16:14:22 / Modified: 18:41:09" itemprop="dateCreated datePublished" datetime="2021-04-01T16:14:22+08:00">2021-04-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E7%A9%B6%E7%8E%B0%E7%8A%B6/" itemprop="url" rel="index"><span itemprop="name">研究现状</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A0%94%E7%A9%B6%E7%8E%B0%E7%8A%B6/%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/" itemprop="url" rel="index"><span itemprop="name">小试牛刀</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近在搞关于本地差分隐私(LDP)的研究现状，看了几篇综述论文【1】【2】【3】，把论文中的研究现状整理了一下。</p>
+<p>LDP在2011年被人提出，至今已有10时间了，这十年里LDP发展了很多，也提出了很多的方向。目前LDP主要集中在简单统计上，如频数估计、平均值计算等以及这些简单统计的应用，虽然LDP的发展没有CDP那么的深入，不过可以预见的是，在当前的大环境下，LDP在未来还会有更好的发展。下面就让我们看看目前LDP发展到什么阶段了。</p>
+<p><strong>1.Frequency Estimation</strong></p>
+<p>频数估计是LDP研究中相对简单的一种，具体可以理解为数据库中的count()函数，正因为频数估计的简单性，使得它在过去几年得到了很好的发展。频数估计主要集中于离散型数据上，例如非数值型数据。</p>
+<p><em>（1）单频估计</em></p>
+<p>单频估计，即客户端只向聚合器发送一个数据。</p>
+<img src="https://img.imgdb.cn/item/60659c748322e6675cc92bde.jpg" alt="单频1" style="zoom:67%;" />
+
+<img src="https://img.imgdb.cn/item/60659c9b8322e6675cc95257.jpg" alt="单频2" style="zoom:67%;" />
+
+<p>近几年单频估计的论文发表情况</p>
+<img src="https://img.imgdb.cn/item/606588e88322e6675cb50bed.jpg" alt="单频折线图" style="zoom:67%;" />
+
+<p><em>（2）多频估计</em></p>
+<p>多频估计，即客户端向聚合器发送多个数据。如果将多频的每个属性都按单频来处理的话，会有两个问题，一是隐私预算会变小，从而误差变大，其次不同属性之间可能会有关联性，用单频处理的话会使这种关联性消失</p>
+<img src="https://img.imgdb.cn/item/60659cc18322e6675cc97a7d.jpg" alt="多频1" style="zoom:67%;" />
+
+<img src="https://img.imgdb.cn/item/60659cf58322e6675cc9af8b.jpg" alt="多频2" style="zoom:67%;" />
+
+<p>近几年多频估计的论文发表情况</p>
+<img src="https://img.imgdb.cn/item/60659bb38322e6675cc86c11.jpg" alt="多频论文" style="zoom:67%;" />
+
+<p><em>（3）heavy hitters</em></p>
+<p>heavy hitters识别的目的是找到项目频率超过阈值。 例如，找到频率大于10％的项目。</p>
+<img src="https://img.imgdb.cn/item/60659c3a8322e6675cc8f2d0.jpg" alt="hh" style="zoom:67%;" />
+
+<p>近几年heavy hitters的论文发表情况</p>
+<img src="https://img.imgdb.cn/item/60659d408322e6675cc9f4a7.jpg" alt="heavy hitters论文" style="zoom:67%;" />
+
+<p><em>（4）set-value data</em></p>
+<p>set-value data包含项目的集合。 具体而言，每个用户最多可以拥有一组项目，而每一组的元素数量不一定。例如：聚合器收集的是每个人一天到过的地点，小明可能一天都在宿舍，这样他就只去了一个地方，而小军可能去北京旅游了，这样他一天就到过可能几十个地方。</p>
+<img src="https://img.imgdb.cn/item/60659d9e8322e6675cca4c04.jpg" alt="sd1" style="zoom:67%;" />
+
+<img src="https://img.imgdb.cn/item/60659dd18322e6675cca7cea.jpg" alt="sd2" style="zoom:67%;" />
+
+<p>近几年set-value data的论文发表情况</p>
+<img src="https://img.imgdb.cn/item/60659dff8322e6675ccaa3e7.jpg" alt="sd论文" style="zoom:67%;" />
+
+<p><em>（5）K-Way Marginal Probability Distribution Estimation</em></p>
+<img src="https://img.imgdb.cn/item/60659e4f8322e6675ccaf619.jpg" alt="kwm1" style="zoom:67%;" />
+
+<p>近几年K-Way Marginal Probability Distribution Estimation的论文发表情况</p>
+<img src="https://img.imgdb.cn/item/60659e718322e6675ccb1552.jpg" alt="kw论文" style="zoom:67%;" />
+
+<p><strong>2.Mean Estimation</strong></p>
+<p>均值估计主要针对连续型的数据，特别是数值数据。</p>
+<img src="https://img.imgdb.cn/item/60659f028322e6675ccb9941.jpg" alt="me" style="zoom:67%;" />
+
+<img src="https://img.imgdb.cn/item/60659f268322e6675ccbb7dc.jpg" alt="me2" style="zoom:67%;" />
+
+<p>近几年Mean Estimation的论文发表情况</p>
+<img src="https://img.imgdb.cn/item/60659f4d8322e6675ccbd980.jpg" alt="me论文" style="zoom:67%;" />
+
+<p><strong>3.New research direction</strong></p>
+<p>这是一些近些年新的研究方向</p>
+<p><em>（1）Renge query</em></p>
+<p>范围查询会计算在指定间隔内具有该值的总体的分数。 例如，“年龄介于30到40岁之间的人口比例是多少？”。</p>
+<img src="https://img.imgdb.cn/item/6065a1738322e6675ccdcd60.jpg" alt="rq论文" style="zoom:67%;" />
+
+<p><em>(2)Frequency estimation over Key-value data</em></p>
+<img src="https://img.imgdb.cn/item/6065a1ad8322e6675cce0005.jpg" alt="ky论文" style="zoom:67%;" />
+
+<p><em>(3)Graph Data Mining</em></p>
+<img src="https://img.imgdb.cn/item/6065a1e38322e6675cce33f6.jpg" alt="gdm论文" style="zoom:67%;" />
+
+<p><strong>4.Future Directions</strong></p>
+<p>这是综述当中所指出的未来研究的一些可能的方向，我把他们总结了一下。</p>
+<p><em>（1）</em>Strengthen Theoretical Underpinnings</p>
+<p><em>（2）</em>Overcome the Challenge of Knowing Data Domain</p>
+<p><em>（3）</em>Focus on Data Correlations</p>
+<p><em>（4）</em>Address High-Dimensional Data Analysis</p>
+<p><em>（5）</em>Adopt Personalized/Granular Privacy Constraints</p>
+<p><em>（6）</em>Develop Prototypical Systems</p>
+<p><em>（7）</em>Privacy amplification</p>
+<p><em>（8）</em>Solutions for small population</p>
+<p><strong>参考论文：</strong></p>
+<p><a href="">【1】本地化差分隐私研究综述_叶青青</a></p>
+<p><a href="">【2】Local Differential Privacy and Its Applications: A Comprehensive Survey Mengmeng Yang, Lingjuan Lyu</a></p>
+<p><a href="">【3】A Comprehensive Survey on Local Differential Privacy toward Data Statistics and Analysis Teng Wang, Xuefeng Zhang</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/08/%E7%BD%91%E7%AB%99%E8%BF%81%E7%A7%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -213,76 +363,6 @@
 
       
           <p><a href="https://www.ljlovelyforever.com/2019/04/15/Hexo%E5%8D%9A%E5%AE%A2%E6%8D%A2%E7%94%B5%E8%84%91%E4%BA%86%E5%A6%82%E4%BD%95%E6%90%AC%E7%A7%BB/" target="_blank" rel="noopener">https://www.ljlovelyforever.com/2019/04/15/Hexo%E5%8D%9A%E5%AE%A2%E6%8D%A2%E7%94%B5%E8%84%91%E4%BA%86%E5%A6%82%E4%BD%95%E6%90%AC%E7%A7%BB/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Lijia'anyi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lijiaanyi'Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/08/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-08 18:44:27" itemprop="dateCreated datePublished" datetime="2021-03-08T18:44:27+08:00">2021-03-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
     </div>
@@ -966,13 +1046,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

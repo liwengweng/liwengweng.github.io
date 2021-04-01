@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-04-01 16:14:22 / Modified: 18:41:09" itemprop="dateCreated datePublished" datetime="2021-04-01T16:14:22+08:00">2021-04-01</time>
+              <time title="Created: 2021-04-01 16:14:22 / Modified: 18:44:41" itemprop="dateCreated datePublished" datetime="2021-04-01T16:14:22+08:00">2021-04-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -213,85 +213,14 @@
 
       
           <p>最近在搞关于本地差分隐私(LDP)的研究现状，看了几篇综述论文【1】【2】【3】，把论文中的研究现状整理了一下。</p>
-<p>LDP在2011年被人提出，至今已有10时间了，这十年里LDP发展了很多，也提出了很多的方向。目前LDP主要集中在简单统计上，如频数估计、平均值计算等以及这些简单统计的应用，虽然LDP的发展没有CDP那么的深入，不过可以预见的是，在当前的大环境下，LDP在未来还会有更好的发展。下面就让我们看看目前LDP发展到什么阶段了。</p>
-<p><strong>1.Frequency Estimation</strong></p>
-<p>频数估计是LDP研究中相对简单的一种，具体可以理解为数据库中的count()函数，正因为频数估计的简单性，使得它在过去几年得到了很好的发展。频数估计主要集中于离散型数据上，例如非数值型数据。</p>
-<p><em>（1）单频估计</em></p>
-<p>单频估计，即客户端只向聚合器发送一个数据。</p>
-<img src="https://img.imgdb.cn/item/60659c748322e6675cc92bde.jpg" alt="单频1" style="zoom:67%;" />
-
-<img src="https://img.imgdb.cn/item/60659c9b8322e6675cc95257.jpg" alt="单频2" style="zoom:67%;" />
-
-<p>近几年单频估计的论文发表情况</p>
-<img src="https://img.imgdb.cn/item/606588e88322e6675cb50bed.jpg" alt="单频折线图" style="zoom:67%;" />
-
-<p><em>（2）多频估计</em></p>
-<p>多频估计，即客户端向聚合器发送多个数据。如果将多频的每个属性都按单频来处理的话，会有两个问题，一是隐私预算会变小，从而误差变大，其次不同属性之间可能会有关联性，用单频处理的话会使这种关联性消失</p>
-<img src="https://img.imgdb.cn/item/60659cc18322e6675cc97a7d.jpg" alt="多频1" style="zoom:67%;" />
-
-<img src="https://img.imgdb.cn/item/60659cf58322e6675cc9af8b.jpg" alt="多频2" style="zoom:67%;" />
-
-<p>近几年多频估计的论文发表情况</p>
-<img src="https://img.imgdb.cn/item/60659bb38322e6675cc86c11.jpg" alt="多频论文" style="zoom:67%;" />
-
-<p><em>（3）heavy hitters</em></p>
-<p>heavy hitters识别的目的是找到项目频率超过阈值。 例如，找到频率大于10％的项目。</p>
-<img src="https://img.imgdb.cn/item/60659c3a8322e6675cc8f2d0.jpg" alt="hh" style="zoom:67%;" />
-
-<p>近几年heavy hitters的论文发表情况</p>
-<img src="https://img.imgdb.cn/item/60659d408322e6675cc9f4a7.jpg" alt="heavy hitters论文" style="zoom:67%;" />
-
-<p><em>（4）set-value data</em></p>
-<p>set-value data包含项目的集合。 具体而言，每个用户最多可以拥有一组项目，而每一组的元素数量不一定。例如：聚合器收集的是每个人一天到过的地点，小明可能一天都在宿舍，这样他就只去了一个地方，而小军可能去北京旅游了，这样他一天就到过可能几十个地方。</p>
-<img src="https://img.imgdb.cn/item/60659d9e8322e6675cca4c04.jpg" alt="sd1" style="zoom:67%;" />
-
-<img src="https://img.imgdb.cn/item/60659dd18322e6675cca7cea.jpg" alt="sd2" style="zoom:67%;" />
-
-<p>近几年set-value data的论文发表情况</p>
-<img src="https://img.imgdb.cn/item/60659dff8322e6675ccaa3e7.jpg" alt="sd论文" style="zoom:67%;" />
-
-<p><em>（5）K-Way Marginal Probability Distribution Estimation</em></p>
-<img src="https://img.imgdb.cn/item/60659e4f8322e6675ccaf619.jpg" alt="kwm1" style="zoom:67%;" />
-
-<p>近几年K-Way Marginal Probability Distribution Estimation的论文发表情况</p>
-<img src="https://img.imgdb.cn/item/60659e718322e6675ccb1552.jpg" alt="kw论文" style="zoom:67%;" />
-
-<p><strong>2.Mean Estimation</strong></p>
-<p>均值估计主要针对连续型的数据，特别是数值数据。</p>
-<img src="https://img.imgdb.cn/item/60659f028322e6675ccb9941.jpg" alt="me" style="zoom:67%;" />
-
-<img src="https://img.imgdb.cn/item/60659f268322e6675ccbb7dc.jpg" alt="me2" style="zoom:67%;" />
-
-<p>近几年Mean Estimation的论文发表情况</p>
-<img src="https://img.imgdb.cn/item/60659f4d8322e6675ccbd980.jpg" alt="me论文" style="zoom:67%;" />
-
-<p><strong>3.New research direction</strong></p>
-<p>这是一些近些年新的研究方向</p>
-<p><em>（1）Renge query</em></p>
-<p>范围查询会计算在指定间隔内具有该值的总体的分数。 例如，“年龄介于30到40岁之间的人口比例是多少？”。</p>
-<img src="https://img.imgdb.cn/item/6065a1738322e6675ccdcd60.jpg" alt="rq论文" style="zoom:67%;" />
-
-<p><em>(2)Frequency estimation over Key-value data</em></p>
-<img src="https://img.imgdb.cn/item/6065a1ad8322e6675cce0005.jpg" alt="ky论文" style="zoom:67%;" />
-
-<p><em>(3)Graph Data Mining</em></p>
-<img src="https://img.imgdb.cn/item/6065a1e38322e6675cce33f6.jpg" alt="gdm论文" style="zoom:67%;" />
-
-<p><strong>4.Future Directions</strong></p>
-<p>这是综述当中所指出的未来研究的一些可能的方向，我把他们总结了一下。</p>
-<p><em>（1）</em>Strengthen Theoretical Underpinnings</p>
-<p><em>（2）</em>Overcome the Challenge of Knowing Data Domain</p>
-<p><em>（3）</em>Focus on Data Correlations</p>
-<p><em>（4）</em>Address High-Dimensional Data Analysis</p>
-<p><em>（5）</em>Adopt Personalized/Granular Privacy Constraints</p>
-<p><em>（6）</em>Develop Prototypical Systems</p>
-<p><em>（7）</em>Privacy amplification</p>
-<p><em>（8）</em>Solutions for small population</p>
-<p><strong>参考论文：</strong></p>
-<p><a href="">【1】本地化差分隐私研究综述_叶青青</a></p>
-<p><a href="">【2】Local Differential Privacy and Its Applications: A Comprehensive Survey Mengmeng Yang, Lingjuan Lyu</a></p>
-<p><a href="">【3】A Comprehensive Survey on Local Differential Privacy toward Data Statistics and Analysis Teng Wang, Xuefeng Zhang</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/01/%E6%9C%AC%E5%9C%B0%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E7%A0%94%E7%A9%B6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -405,10 +334,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-07-09 13:44:49 / Modified: 14:13:46" itemprop="dateCreated datePublished" datetime="2020-07-09T13:44:49+08:00">2020-07-09</time>
+              <time title="Created: 2020-07-09 13:44:49" itemprop="dateCreated datePublished" datetime="2020-07-09T13:44:49+08:00">2020-07-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-01 18:43:59" itemprop="dateModified" datetime="2021-04-01T18:43:59+08:00">2021-04-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -435,37 +370,14 @@
 
       
           <p>WPScan是Kali Linux默认自带的一款漏洞扫描工具，能够扫描WordPress网站中的多种安全漏洞，其中包括WordPress本身的漏洞、插件漏洞和主题漏洞。</p>
-<p><strong>1.注意：现在使用wpscan需要使用官方的api-token，这个可以自己注册一个免费的账号。</strong></p>
-<p>如果不使用的话扫描结果是不会输出漏洞信息的！！</p>
-<p>注册地址：<a href="https://wpvulndb.com/users/choose_plan" target="_blank" rel="noopener">https://wpvulndb.com/users/choose_plan</a></p>
-<p>注册完成后可以选择每天免费的50api</p>
-<p><img src="https://pic.downk.cc/item/5f06af7f14195aa59463a478.jpg" alt=""></p>
-<p>虽然kali里自带wpscan但是想要在自己其他的设备上安装的话可以用下面的命令</p>
-<p><code>git clone https://github.com/wpscanteam/wpscan.git</code></p>
-<p><strong>2.查看帮助信息</strong></p>
-<p><code>wpscan -h</code></p>
-<p><img src="https://pic.downk.cc/item/5f06affc14195aa59463c9b5.jpg" alt=""></p>
-<p><strong>3.更新漏洞库</strong></p>
-<p><code>wpscan --updata</code></p>
-<p><img src="https://pic.downk.cc/item/5f06b04614195aa59463e51c.jpg" alt=""></p>
-<p><strong>4.扫描网站</strong></p>
-<p><code>wpscan --url 网站的URL -e --api-token xxxxxxxxxxxxxxxxxxx #-e简单进行整体快速扫描</code></p>
-<p>发现的漏洞</p>
-<p><img src="https://pic.downk.cc/item/5f06b2f814195aa5946496da.jpg" alt=""></p>
-<p>注意：这里扫描到的是站点的一些信息并且列出可能是漏洞的地方。注意，这里wpscan判断是否有漏洞，是根据wordpress的版本判定的，只要你的版本低于存在漏洞的版本，那么，它就认为存在漏洞，所以，这个没有太多的参考性。</p>
-<p><strong>5.简单扫描wordpress的插件(plugin)</strong></p>
-<p><code>wpscan --url 网站的URL --enumerate p --api-token xxxxxxxxxxxxxxxxx</code></p>
-<p><strong>6.完整扫描wordpress的插件(plugin)</strong></p>
-<p><code>wpscan --url 网站的URL --enumerate ap</code></p>
-<p><strong>7.列举wordpress的用户</strong></p>
-<p><code>wpscan --url 网站的URL  --enumerate u</code></p>
-<p><strong>8.扫描使用的主题和漏洞</strong></p>
-<p><code>wpsan --url 网站的URL  --enumerate vt</code></p>
-<p><strong>9.用字典暴力破解</strong></p>
-<p><code>wpscan --url 网站的URL -P /user/share/wordlist/rockyou.txt -U admin -t 100 #指定用户名为admin，密码为 /user/share/wordlist/rockyou.txt 字典文件中的数据 设置线程100</code></p>
-<p><strong>参考链接：</strong></p>
-<p><a href="">https://www.cnblogs.com/Xy–1/p/12236684.html</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/09/Wpscan%E5%88%9D%E5%AD%A6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
